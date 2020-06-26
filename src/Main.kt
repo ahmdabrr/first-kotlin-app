@@ -1,3 +1,5 @@
+import java.lang.StringBuilder
+
 fun main(args: Array<String>) {
     val myName = "WISNU"
 
@@ -38,5 +40,11 @@ private fun dataTypeLimit(){
     println("Minimum value : $double1")
     println("Maximum value : $double2\n")
 
-
+    var string1 = StringBuilder()
+    string1.append("this-is-string-value").append(1)
+    string1.clear()
+    var string2 = Integer.MAX_VALUE
+    println("String Data Type")
+    println("Minimum value : ${string1.length}")
+    println("Maximum value : $string2\n")
 }
