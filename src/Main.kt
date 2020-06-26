@@ -40,9 +40,15 @@ private fun dataTypeLimit(){
     println("Minimum value : $double1")
     println("Maximum value : $double2\n")
 
+    // since String is words. The minimum value of it is when we don't fill it OR when we reset it.
+    // here I reset the string to assume the minimum String value.
     var string1 = StringBuilder()
     string1.append("this-is-string-value").append(1)
     string1.clear()
+    // String length can be counted using function length().
+    // since length() return integer value and actually String is an Array of words,
+    // here I assume the maximum String value is the maximum value of integer can hold.
+    // therefore I use Integer.MAX_VALUE.
     var string2 = Integer.MAX_VALUE
     println("String Data Type")
     println("Minimum value : ${string1.length}")
