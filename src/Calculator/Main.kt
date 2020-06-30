@@ -3,6 +3,11 @@ package Calculator
 fun main(args: Array<String>) {
     val name: String = "WISNU"
     var again: String = "Y"
+    val addCalcObj: AdditionalCalc = AdditionalCalc()
+    val subCalcObj: SubtractionCalc = SubtractionCalc()
+    val mulCalcObj: MultiplyCalc = MultiplyCalc()
+    val divCalcObj: DivisionCalc = DivisionCalc()
+
     name.titleApp()
     do {
         println("")
@@ -13,10 +18,10 @@ fun main(args: Array<String>) {
         print("Select your Calculator : ")
 
         when (readLine()) {
-            "A" -> AdditionalCalc().run()
-            "B" -> SubtractionCalc().run()
-            "C" -> MultiplyCalc().run()
-            "D" -> DivisionCalc().run()
+            "A" -> addCalcObj.run()
+            "B" -> subCalcObj.run()
+            "C" -> mulCalcObj.run()
+            "D" -> divCalcObj.run()
             else -> print("Sorry. You type it wrong.")
         }
 
