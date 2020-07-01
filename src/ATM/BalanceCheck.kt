@@ -1,8 +1,7 @@
 package ATM
-
-open class BalanceCheck: ATM() {
-    var atmObj: ATM = ATM()
-    fun run() {
-        println("Your Balance : Rp. ${atmObj.balance}")
-    }
-}
+//
+//open class BalanceCheck: ATM() {
+//    override fun run() {
+//        println("Your Balance : Rp. ${showBalance()}")
+//    }
+//}
