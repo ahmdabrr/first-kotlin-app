@@ -7,7 +7,7 @@ import java.text.NumberFormat
 open class ATM(name: String) : Bank(name) {
     private val realPin: String = "123456"
     private var balance = 500000
-    var status: Int = 0
+    private var status: Int = 0
     var again = "Y"
     var formatter: NumberFormat = DecimalFormat("#,###")
 
@@ -15,6 +15,7 @@ open class ATM(name: String) : Bank(name) {
         var pin: String
 
         do {
+            status = 0
             print("Enter PIN : ")
             pin = readLine().toString()
             if (pin.length != 6) {
@@ -29,23 +30,33 @@ open class ATM(name: String) : Bank(name) {
         } while (status == 0)
 
         do {
-            println("")
-            println("A: Balance Check")
-            println("B: Cast Withdrawal")
-            println("C: Cast Deposit")
-            println("X: Exit")
-            print("Enter your choice : ")
+            do {
+                status = 1
+                println("")
+                println("A: Balance Check")
+                println("B: Cast Withdrawal")
+                println("C: Cast Deposit")
+                println("X: Exit")
+                print("Enter your choice : ")
 
-            when (readLine()) {
-                "A" -> balance()
-                "B" -> withdrawal()
-                "C" -> deposit()
-                "X" -> return
-                else -> println("Sorry. You type it wrong.")
-            }
+                when (readLine()) {
+                    "A" -> balance()
+                    "B" -> withdrawal()
+                    "C" -> deposit()
+                    "X" -> return
+                    else -> {
+                        println("Sorry. You type it wrong.")
+                        status = 0
+                    }
+                }
+            } while (status == 0)
 
-            print("Try again? (Y/N) : ")
-            again = readLine().toString()
+            do {
+                print("Try again? (Y/N) : ")
+                again = readLine().toString()
+                if (!(again == "Y" || again == "N")) println("Sorry. You type it wrong")
+            } while (!((again == "Y") || (again == "N")))
+
         } while (again == "Y")
     }
 
@@ -57,13 +68,17 @@ open class ATM(name: String) : Bank(name) {
         try {
             print("Your Withdrawal : Rp. ")
             val withdrawalValue = Integer.valueOf(readLine())
+
             if (withdrawalValue > this.balance) {
                 println("Not enough balance")
                 return
             }
             this.balance = minBalance(this.balance, withdrawalValue)
             if (withdrawalValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
-            else println("Must be multiple of Rp. 50,000")
+            else {
+                println("Must be multiple of Rp. 50,000")
+                withdrawal()
+            }
         }
         catch (e: NumberFormatException) {
             println("Input error. Must be Number.")
@@ -76,8 +91,13 @@ open class ATM(name: String) : Bank(name) {
             print("Your Deposit : Rp. ")
             val depositValue = Integer.valueOf(readLine())
             this.balance = addBalance(this.balance, depositValue)
-            if (depositValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
-            else println("Must be multiple of Rp. 50,000")
+
+            if (depositValue == 0) println("Cannot withdraw Rp. 0")
+            else if (depositValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
+            else {
+                println("Must be multiple of Rp. 50,000")
+                withdrawal()
+            }
         }
         catch (e: NumberFormatException) {
             println("Input error. Must be Number.")
