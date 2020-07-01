@@ -1,7 +1,9 @@
 package ATM
 
+import java.lang.NumberFormatException
 import java.text.DecimalFormat
 import java.text.NumberFormat
+import javax.xml.datatype.DatatypeConfigurationException
 
 open class ATM(name: String) : Bank(name) {
     private val realPin: String = "123456"
@@ -53,23 +55,35 @@ open class ATM(name: String) : Bank(name) {
     }
 
     private fun withdrawal() {
-        print("Your Withdrawal : Rp. ")
-        var withdrawalValue = Integer.valueOf(readLine())
-        if (withdrawalValue > this.balance) {
-            println("Not enough balance")
-            return
+        try {
+            print("Your Withdrawal : Rp. ")
+            val withdrawalValue = Integer.valueOf(readLine())
+            if (withdrawalValue > this.balance) {
+                println("Not enough balance")
+                return
+            }
+            this.balance = minBalance(this.balance, withdrawalValue)
+            if (withdrawalValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
+            else println("Must be multiple of Rp. 50,000")
         }
-        this.balance = minBalance(this.balance, withdrawalValue)
-        if (withdrawalValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
-        else println("Must be multiple of Rp. 50,000")
+        catch (e: NumberFormatException) {
+            println("Input error. Must be Number.")
+            withdrawal()
+        }
     }
 
     private fun deposit() {
-        print("Your Deposit : Rp. ")
-        var depositValue = Integer.valueOf(readLine())
-        this.balance = addBalance(this.balance, depositValue)
-        if (depositValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
-        else println("Must be multiple of Rp. 50,000")
+        try {
+            print("Your Deposit : Rp. ")
+            val depositValue = Integer.valueOf(readLine())
+            this.balance = addBalance(this.balance, depositValue)
+            if (depositValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
+            else println("Must be multiple of Rp. 50,000")
+        }
+        catch (e: NumberFormatException) {
+            println("Input error. Must be Number.")
+            deposit()
+        }
     }
 
     private fun showBalance(): String {
