@@ -3,7 +3,6 @@ package ATM
 import java.lang.NumberFormatException
 import java.text.DecimalFormat
 import java.text.NumberFormat
-import javax.xml.datatype.DatatypeConfigurationException
 
 open class ATM(name: String) : Bank(name) {
     private val realPin: String = "123456"
