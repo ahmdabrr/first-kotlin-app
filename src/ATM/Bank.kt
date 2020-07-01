@@ -5,9 +5,9 @@ open class Bank(name: String) {
         println("Welcome back, $name!")
     }
 
-    constructor() {
-        println("Thank you!")
-    }
+//    constructor() {
+//        println("Thank you!")
+//    }
 
     fun minBalance(balance: Int, withdrawalValue: Int): Int {
         return balance - withdrawalValue
