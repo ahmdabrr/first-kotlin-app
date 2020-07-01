@@ -2,12 +2,12 @@ package ATM
 
 open class Bank(name: String) {
     init {
-        println("Welcome back, $name!")
+//        println("Welcome back, $name!")
     }
 
-//    constructor() {
-//        println("Thank you!")
-//    }
+    constructor(name: String, message: String) : this(name) {
+        println("$message, $name!")
+    }
 
     fun minBalance(balance: Int, withdrawalValue: Int): Int {
         return balance - withdrawalValue

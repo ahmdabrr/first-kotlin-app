@@ -55,6 +55,10 @@ open class ATM(name: String) : Bank(name) {
     private fun withdrawal() {
         print("Your Withdrawal : Rp. ")
         var withdrawalValue = Integer.valueOf(readLine())
+        if (withdrawalValue > this.balance) {
+            println("Not enough balance")
+            return
+        }
         this.balance = minBalance(this.balance, withdrawalValue)
         if (withdrawalValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
         else println("Must be multiple of Rp. 50,000")
