@@ -7,10 +7,6 @@ class DivisionCalc: Calculator(){
         print("Enter your second number: ")
         val secondNum = Integer.valueOf(readLine())
 
-        showResult(firstNum, secondNum)
-    }
-
-    private fun showResult(firstNum: Int, secondNum: Int) {
-        println("The Sum is ${toDiv(firstNum, secondNum)}")
+        println("The Division is ${toDiv(firstNum, secondNum)}")
     }
 }

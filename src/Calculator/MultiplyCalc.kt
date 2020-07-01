@@ -7,10 +7,6 @@ class MultiplyCalc: Calculator(){
         print("Enter your second number: ")
         val secondNum = Integer.valueOf(readLine())
 
-        showResult(firstNum, secondNum)
-    }
-
-    private fun showResult(firstNum: Int, secondNum: Int) {
-        println("The Sum is ${toMul(firstNum, secondNum)}")
+        println("The Multiply is ${toMul(firstNum, secondNum)}")
     }
 }

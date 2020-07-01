@@ -7,10 +7,6 @@ class SubtractionCalc: Calculator(){
         print("Enter your second number: ")
         val secondNum = Integer.valueOf(readLine())
 
-        showResult(firstNum, secondNum)
-    }
-
-    private fun showResult(firstNum: Int, secondNum: Int) {
         println("The Subtraction is ${toSub(firstNum, secondNum)}")
     }
 }
