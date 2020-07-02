@@ -1,4 +1,4 @@
-package Calculator
+package calculator
 
 open class Calculator() {
     fun toAdd(firstNum: Int, secondNum: Int): Int {

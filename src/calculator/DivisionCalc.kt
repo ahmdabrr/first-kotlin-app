@@ -1,4 +1,4 @@
-package Calculator
+package calculator
 
 class DivisionCalc: Calculator(){
     internal fun run() {

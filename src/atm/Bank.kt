@@ -1,4 +1,4 @@
-package ATM
+package atm
 
 open class Bank(name: String) {
     init {

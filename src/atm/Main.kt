@@ -1,4 +1,4 @@
-package ATM
+package atm
 
 fun main(args: Array<String>) {
     intro("BCA")

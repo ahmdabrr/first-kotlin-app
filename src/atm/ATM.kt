@@ -1,4 +1,4 @@
-package ATM
+package atm
 
 import java.lang.NumberFormatException
 import java.text.DecimalFormat
