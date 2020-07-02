@@ -18,15 +18,17 @@ open class ATM(name: String) : Bank(name) {
             status = 0
             print("Enter PIN : ")
             pin = readLine().toString()
+
             if (pin.length != 6) {
                 println("PIN must be 6 digit")
                 status = 0
-            }
-            else if (pin != realPin) {
+            } else if (pin != realPin) {
                 println("Incorrect PIN")
                 status = 0
-            }
-            else status = 1
+            } else if (pin == realPin) {
+                println("PIN correct")
+                status = 1
+            } else status = 0
         } while (status == 0)
 
         do {
@@ -68,16 +70,16 @@ open class ATM(name: String) : Bank(name) {
         try {
             print("Your Withdrawal : Rp. ")
             val withdrawalValue = Integer.valueOf(readLine())
-
             if (withdrawalValue > this.balance) {
                 println("Not enough balance")
                 return
-            }
-            this.balance = minBalance(this.balance, withdrawalValue)
-            if (withdrawalValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
-            else {
-                println("Must be multiple of Rp. 50,000")
-                withdrawal()
+            } else if (withdrawalValue%50000 != 0) {
+                println("Withdrawal must be multiple of Rp. 50,000")
+                return
+            } else {
+                this.balance = minBalance(this.balance, withdrawalValue)
+                println("Withdrawal Success")
+                println("Your Balance Rp. ${formatter.format(this.balance)}")
             }
         }
         catch (e: NumberFormatException) {
@@ -90,13 +92,15 @@ open class ATM(name: String) : Bank(name) {
         try {
             print("Your Deposit : Rp. ")
             val depositValue = Integer.valueOf(readLine())
-            this.balance = addBalance(this.balance, depositValue)
 
-            if (depositValue == 0) println("Cannot withdraw Rp. 0")
-            else if (depositValue%50000 == 0) println("Your Balance Rp. ${formatter.format(this.balance)}")
+            if (depositValue%50000 != 0) {
+                println("Deposit must be multiple of Rp. 50,000")
+                return
+            }
             else {
-                println("Must be multiple of Rp. 50,000")
-                withdrawal()
+                this.balance = addBalance(this.balance, depositValue)
+                println("Deposit Success")
+                println("Your Balance Rp. ${formatter.format(this.balance)}")
             }
         }
         catch (e: NumberFormatException) {
