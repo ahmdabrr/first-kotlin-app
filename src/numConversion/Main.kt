@@ -1,8 +1,6 @@
 package numConversion
 
-import kotlin.Array as Array1
-
-fun main(args: Array1<String>){
+fun main(args: Array<String>){
     intro()
     process()
     end()
